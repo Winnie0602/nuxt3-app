@@ -3,11 +3,7 @@
         "browser": true,
         "es2021": true
     },
-    "extends": [
-        "@nuxtjs/eslint-config-typescript",
-        "plugin:nuxt/recommended",
-        "plugin:prettier/recommended"
-    ],
+    "extends": ["@nuxtjs/eslint-config-typescript", "plugin:nuxt/recommended", "plugin:prettier/recommended"],
     "overrides": [
         {
             "env": {
@@ -19,21 +15,11 @@
             }
         }
     ],
-    "indent": ["off", 2],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "parser": "@typescript-eslint/parser",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint",
-        "vue"
-    ],
     "rules": {
-        "quotes": ["error", "single"], //使用單引號
-        "semi": ["error", "never"], // 不加分號
-        "no-console": "off", // 打console.log的時候不報錯
-        "vue/singleline-html-element-content-newline": "off", //vue html將屬性列為單行
+        "quotes": ["error", "single"],
+        "semi": ["error", "never"],
+        "no-console": "off",
+        "vue/singleline-html-element-content-newline": "off",
         "vue/multiline-html-element-content-newline": "off"
     }
 }
