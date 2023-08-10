@@ -1,10 +1,9 @@
 import type { Config } from 'tailwindcss'
 
 export default {
-  content: ["./node_modules/flowbite/**/*.{js,ts}"],
+  content: [],
   theme: {
     extend: {},
   },
-  plugins: [require('flowbite/plugin')],
+  plugins: [require('daisyui')],
 } satisfies Config
-
