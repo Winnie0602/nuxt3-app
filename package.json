@@ -27,7 +27,8 @@
     "pinia": "^2.1.6",
     "prettier": "^3.0.1",
     "prettier-plugin-tailwindcss": "^0.4.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vee-validate": "^4.11.1"
   },
   "overrides": {
     "vue": "latest"

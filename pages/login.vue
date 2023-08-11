@@ -15,8 +15,10 @@
             <div class="form-control">
               <label class="label">
                 <span class="label-text">Email</span>
+                <pre>values: {{ values }}</pre>
               </label>
               <input
+                v-bind="email"
                 type="text"
                 placeholder="email"
                 class="input input-bordered"
@@ -27,6 +29,7 @@
                 <span class="label-text">Password</span>
               </label>
               <input
+                v-bind="password"
                 type="text"
                 placeholder="password"
                 class="input input-bordered"
@@ -48,6 +51,11 @@
 </template>
 
 <script setup lang="ts">
+import { useForm } from 'vee-validate'
+const { values, defineInputBinds } = useForm()
+
+const email = defineInputBinds('email')
+const password = defineInputBinds('password')
 definePageMeta({
   layout: false,
 })
