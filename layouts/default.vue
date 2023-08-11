@@ -1,5 +1,8 @@
 <template>
   <Navbar />
-  <slot />
+  <div class="md:container md:mx-auto">
+    <slot />
+  </div>
+
   <Footer />
 </template>
