@@ -1,0 +1,12 @@
+{
+  "mixed": {
+    "default": "${path} is invalid",
+    "required": "必填欄位"
+  },
+  "string": {
+    "required": "必填欄位",
+    "min": "長度需要大於${min}",
+    "max": "長度需要小於${max}",
+    "email": "請輸入正確格式email"
+  }
+}
