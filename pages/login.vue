@@ -1,8 +1,8 @@
 <template>
   <NuxtLayout name="login">
-    <div class="hero min-h-screen bg-base-200">
+    <div class="hero min-h-screen bg-secondary-content">
       <div class="hero-content flex-col lg:flex-row-reverse">
-        <div class="text-center lg:text-left">
+        <div class="mx-5 text-center lg:text-left">
           <h1 class="text-5xl font-bold">Login now!</h1>
           <p class="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
@@ -50,7 +50,28 @@
                 </div>
               </div>
               <div class="form-control mt-6">
-                <button class="btn btn-primary">Login</button>
+                <button class="btn btn-error btn-outline">Login</button>
+              </div>
+              <div class="form-control flex flex-row justify-between">
+                <button
+                  style="width: 150px"
+                  class="btn btn-error"
+                  @click="githubSignInHandler"
+                >
+                  <img
+                    src="~/assets/img/github-mark/github-mark-white.svg"
+                    style="width: 35px"
+                    alt=""
+                  />
+                  Github
+                </button>
+                <button
+                  style="width: 150px"
+                  class="btn btn-error"
+                  @click="githubSignOutHandler"
+                >
+                  XXXXXXXXX
+                </button>
               </div>
             </div>
           </form>
@@ -67,6 +88,7 @@ import * as yup from 'yup'
 import { setLocale } from 'yup'
 import zhHant from '~/utils/zh-hant.json'
 
+// 表單驗證
 configure({
   bails: false,
   validateOnModelUpdate: false,
@@ -92,6 +114,29 @@ const onSubmit = handleSubmit((values) => {
 const email = defineInputBinds('email')
 const password = defineInputBinds('password')
 
+// OAuth
+const { signIn, signOut } = useAuth()
+// status.value: `unauthenticated`, `loading`, `authenticated`
+// data.value, e.g., expiration, user.email, ...
+// const loggedIn = computed(() => status.value === 'authenticated')
+
+const githubSignInHandler = async () => {
+  await signIn()
+}
+
+const githubSignOutHandler = async () => {
+  await signOut()
+}
+
+// 設定只有未登入者可以看此頁面
+definePageMeta({
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/todolist',
+  },
+})
+
+// 設定layout
 definePageMeta({
   layout: false,
 })
