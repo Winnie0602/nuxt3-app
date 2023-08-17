@@ -112,9 +112,10 @@ const onSubmit = handleSubmit(async (values) => {
   const a = await signIn('credentials', {
     email: values.email,
     password: values.password,
+    // redirect: false,
     callbackUrl: '/todolist',
   })
-  console.log(a)
+  console.log(123, a)
 
   // if (error) {
   //   // Do your custom error handling here
@@ -130,12 +131,11 @@ const password = defineInputBinds('password')
 
 // OAuth
 const { signIn } = useAuth()
-// status.value: `unauthenticated`, `loading`, `authenticated`
-// data.value, e.g., expiration, user.email, ...
 // const loggedIn = computed(() => status.value === 'authenticated')
 
 const githubSignInHandler = async () => {
-  await signIn('github', { callbackUrl: '/todolist' })
+  const b = await signIn('github', { redirect: false })
+  console.log(b)
 }
 
 // 設定layout

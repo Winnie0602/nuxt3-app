@@ -21,7 +21,8 @@ export default NuxtAuthHandler({
         password: { label: 'Password', type: 'password' },
       },
       authorize(credentials: any) {
-        console.log('credentials', credentials)
+        // console.log('credentials', credentials)
+        // throw new Error('錯誤@!')
 
         const user = {
           email: 'test@gmail.com',
