@@ -11,18 +11,21 @@
           </p>
         </div>
         <div class="card w-full max-w-sm flex-shrink-0 bg-base-100 shadow-2xl">
-          <form action="" @submit="onSubmit">
-            <div class="card-body">
+          <div class="card-body">
+            <form action="" @submit.prevent="onSubmit">
               <div class="form-control">
                 <div class="form-control w-full max-w-xs">
                   <label class="label">
                     <span class="label-text">Email</span>
-                    <span class="label-text-alt">{{ errors.email }}</span>
+                    <span class="label-text-alt text-error">{{
+                      errors.email
+                    }}</span>
                   </label>
                   <input
                     type="text"
                     placeholder="Type here"
                     class="input input-bordered w-full max-w-xs"
+                    :class="{ 'input-error': errors.email }"
                     v-bind="email"
                   />
                   <label class="label">
@@ -35,12 +38,15 @@
                 <div class="form-control w-full max-w-xs">
                   <label class="label">
                     <span class="label-text">Password</span>
-                    <span class="label-text-alt">{{ errors.password }}</span>
+                    <span class="label-text-alt text-error">{{
+                      errors.password
+                    }}</span>
                   </label>
                   <input
                     type="text"
                     placeholder="Type here"
                     class="input input-bordered w-full max-w-xs"
+                    :class="{ 'input-error': errors.password }"
                     v-bind="password"
                   />
                   <label class="label">
@@ -52,29 +58,26 @@
               <div class="form-control mt-6">
                 <button class="btn btn-error btn-outline">Login</button>
               </div>
-              <div class="form-control flex flex-row justify-between">
-                <button
-                  style="width: 150px"
-                  class="btn btn-error"
-                  @click="githubSignInHandler"
-                >
-                  <img
-                    src="~/assets/img/github-mark/github-mark-white.svg"
-                    style="width: 35px"
-                    alt=""
-                  />
-                  Github
-                </button>
-                <button
-                  style="width: 150px"
-                  class="btn btn-error"
-                  @click="githubSignOutHandler"
-                >
-                  XXXXXXXXX
-                </button>
-              </div>
+            </form>
+
+            <div class="form-control flex flex-row justify-between">
+              <button
+                style="width: 150px"
+                class="btn btn-error"
+                @click="githubSignInHandler"
+              >
+                <img
+                  src="~/assets/img/github-mark/github-mark-white.svg"
+                  style="width: 35px"
+                  alt=""
+                />
+                Github
+              </button>
+              <button style="width: 150px" class="btn btn-error">
+                XXXXXXXXX
+              </button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
@@ -88,17 +91,13 @@ import * as yup from 'yup'
 import { setLocale } from 'yup'
 import zhHant from '~/utils/zh-hant.json'
 
-// 表單驗證
-configure({
-  bails: false,
-  validateOnModelUpdate: false,
-  validateOnChange: false,
-  validateOnBlur: false,
-})
-
 setLocale(zhHant)
 
 const { errors, defineInputBinds, handleSubmit } = useForm({
+  initialValues: {
+    email: 'test@gmail.com',
+    password: 'password',
+  },
   validationSchema: toTypedSchema(
     yup.object({
       email: yup.string().email().required(),
@@ -107,37 +106,45 @@ const { errors, defineInputBinds, handleSubmit } = useForm({
   ),
 })
 
-const onSubmit = handleSubmit((values) => {
-  alert(JSON.stringify(values, null, 2))
+const onSubmit = handleSubmit(async (values) => {
+  // alert(JSON.stringify(values, null, 2))
+
+  const a = await signIn('credentials', {
+    email: values.email,
+    password: values.password,
+    callbackUrl: '/todolist',
+  })
+  console.log(a)
+
+  // if (error) {
+  //   // Do your custom error handling here
+  //   alert('You have made a terrible mistake while entering your credentials')
+  // } else {
+  //   // No error, continue with the sign in, e.g., by following the returned redirect:
+  //   return navigateTo(url, { external: true })
+  // }
 })
 
 const email = defineInputBinds('email')
 const password = defineInputBinds('password')
 
 // OAuth
-const { signIn, signOut } = useAuth()
+const { signIn } = useAuth()
 // status.value: `unauthenticated`, `loading`, `authenticated`
 // data.value, e.g., expiration, user.email, ...
 // const loggedIn = computed(() => status.value === 'authenticated')
 
 const githubSignInHandler = async () => {
-  await signIn()
+  await signIn('github', { callbackUrl: '/todolist' })
 }
 
-const githubSignOutHandler = async () => {
-  await signOut()
-}
-
+// 設定layout
 // 設定只有未登入者可以看此頁面
 definePageMeta({
+  layout: false,
   auth: {
     unauthenticatedOnly: true,
     navigateAuthenticatedTo: '/todolist',
   },
-})
-
-// 設定layout
-definePageMeta({
-  layout: false,
 })
 </script>

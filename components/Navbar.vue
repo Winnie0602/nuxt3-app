@@ -16,6 +16,6 @@
 const { signOut } = useAuth()
 
 const githubSignOutHandler = async () => {
-  await signOut()
+  await signOut({ callbackUrl: '/login' })
 }
 </script>

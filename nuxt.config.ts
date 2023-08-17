@@ -2,10 +2,10 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@sidebase/nuxt-auth'],
-  // auth: {
-  //   origin: 'http://localhost:3000',
-  //   globalAppMiddleware: true,
-  // },
+  auth: {
+    origin: 'http://localhost:3000',
+    globalAppMiddleware: true,
+  },
   app: {
     head: {
       link: [
