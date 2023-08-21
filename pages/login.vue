@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="login">
-    <div class="hero min-h-screen bg-secondary-content">
+    <div class="hero min-h-screen bg-primary">
       <div class="hero-content flex-col lg:flex-row-reverse">
         <div class="mx-5 text-center lg:text-left">
           <h1 class="text-5xl font-bold">Login now!</h1>
@@ -85,7 +85,7 @@
 </template>
 
 <script setup lang="ts">
-import { useForm, configure } from 'vee-validate'
+import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/yup'
 import * as yup from 'yup'
 import { setLocale } from 'yup'
@@ -134,8 +134,7 @@ const { signIn } = useAuth()
 // const loggedIn = computed(() => status.value === 'authenticated')
 
 const githubSignInHandler = async () => {
-  const b = await signIn('github', { redirect: false })
-  console.log(b)
+  await signIn('github')
 }
 
 // 設定layout
