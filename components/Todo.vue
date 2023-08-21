@@ -1,22 +1,19 @@
 <template>
-  <div class="flex items-center">
+  <div class="my-2 flex w-full items-center rounded-lg bg-base-200 px-10">
     <input
       v-if="type === 'incompleted'"
       type="checkbox"
       class="checkbox"
       @change="complete"
     />
-    <div
-      class="collapse mx-3 my-3 flex items-center justify-between bg-base-200"
+
+    <div class="collapse-title text-xl font-medium">{{ todo }}</div>
+    <span
+      class="material-symbols-outlined p-3"
+      @click="deleteHandler(type, todo)"
     >
-      <div class="collapse-title text-xl font-medium">{{ todo }}</div>
-      <span
-        class="material-symbols-outlined p-3"
-        @click="deleteHandler(type, todo)"
-      >
-        delete
-      </span>
-    </div>
+      delete
+    </span>
   </div>
 </template>
 

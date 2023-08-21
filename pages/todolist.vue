@@ -8,7 +8,7 @@
         v-model="inputTodo"
         type="text"
         placeholder="請輸入代辦事項"
-        class="input input-bordered w-full max-w-xs"
+        class="max-w-s input input-bordered w-full"
       />
       <button class="btn btn-neutral btn-active mx-3" @click="add">新增</button>
     </div>
@@ -16,7 +16,7 @@
     <!-- 代辦清單 -->
     <p class="mt-20 text-5xl font-bold">To Do</p>
     <hr class="my-5" />
-    <div class="flex w-full justify-center">
+    <div class="flex w-full flex-col justify-center">
       <p v-if="todoList.length === 0" class="mt-10 text-xl font-bold">
         目前沒有內容~
       </p>
@@ -32,7 +32,7 @@
     <!-- 完成清單 -->
     <p class="mt-20 text-5xl font-bold">Completed</p>
     <hr class="my-5" />
-    <div class="flex w-full justify-center">
+    <div class="flex w-full flex-col justify-center">
       <p v-if="completedList.length === 0" class="mt-10 text-xl font-bold">
         目前沒有內容~
       </p>
