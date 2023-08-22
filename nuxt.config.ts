@@ -2,9 +2,9 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@sidebase/nuxt-auth'],
-  auth: {
-    globalAppMiddleware: true,
-  },
+  // auth: {
+  //   globalAppMiddleware: true,
+  // },
   app: {
     head: {
       link: [

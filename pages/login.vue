@@ -93,6 +93,7 @@ import zhHant from '~/utils/zh-hant.json'
 
 setLocale(zhHant)
 
+// 表單
 const { errors, defineInputBinds, handleSubmit } = useForm({
   initialValues: {
     email: 'test@gmail.com',
@@ -106,6 +107,7 @@ const { errors, defineInputBinds, handleSubmit } = useForm({
   ),
 })
 
+// 提交表單、登入跳轉
 const onSubmit = handleSubmit(async (values) => {
   // alert(JSON.stringify(values, null, 2))
 
@@ -115,7 +117,7 @@ const onSubmit = handleSubmit(async (values) => {
     // redirect: false,
     callbackUrl: '/todolist',
   })
-  console.log(123, a)
+  console.log('成功', a)
 
   // if (error) {
   //   // Do your custom error handling here

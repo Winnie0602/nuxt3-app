@@ -1,7 +1,9 @@
 <template>
   <Html data-theme="pastel">
     <Body>
-      <NuxtLayout><NuxtPage /></NuxtLayout>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
     </Body>
   </Html>
 
