@@ -8,6 +8,7 @@
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
+            {{ data }}
           </p>
         </div>
         <div class="card w-full max-w-sm flex-shrink-0 bg-base-100 shadow-2xl">
@@ -111,12 +112,12 @@ const { errors, defineInputBinds, handleSubmit } = useForm({
 const onSubmit = handleSubmit(async (values) => {
   // alert(JSON.stringify(values, null, 2))
 
-  const a = await signIn('credentials', {
+  await signIn('credentials', {
     email: values.email,
     password: values.password,
-    redirect: false,
+    // redirect: false,
+    callbackUrl: '/todolist',
   })
-  console.log('成功', a)
 
   // if (error) {
   //   // Do your custom error handling here
@@ -147,4 +148,7 @@ definePageMeta({
     navigateAuthenticatedTo: '/todolist',
   },
 })
+
+const { data } = await useFetch('/api/me')
+console.log(data)
 </script>
