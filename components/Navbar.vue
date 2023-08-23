@@ -55,12 +55,10 @@
           class="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 text-neutral shadow"
         >
           <li>
-            <NuxtLink to="/profile"
-              ><a class="justify-between">
-                Profile
-                <span class="badge">New</span>
-              </a></NuxtLink
-            >
+            <NuxtLink to="/profile">
+              Profile
+              <span class="badge">New</span>
+            </NuxtLink>
           </li>
           <li><a>Settings</a></li>
           <li><button @click="githubSignOutHandler">Logout</button></li>

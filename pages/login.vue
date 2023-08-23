@@ -114,8 +114,7 @@ const onSubmit = handleSubmit(async (values) => {
   const a = await signIn('credentials', {
     email: values.email,
     password: values.password,
-    // redirect: false,
-    callbackUrl: '/todolist',
+    redirect: false,
   })
   console.log('成功', a)
 
@@ -136,7 +135,7 @@ const { signIn } = useAuth()
 // const loggedIn = computed(() => status.value === 'authenticated')
 
 const githubSignInHandler = async () => {
-  await signIn('github')
+  await signIn('github', { callbackUrl: '/todolist' })
 }
 
 // 設定layout
