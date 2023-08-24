@@ -7,15 +7,19 @@ export default NuxtAuthHandler({
     // Change the default behavior to use `/login` as the path for the sign-in page
     signIn: '/login',
   },
-  callbacks: {
-    jwt: async ({token, user}) => {
-      const isSignIn = !!user
-      if (isSignIn) {
-        token.subscribed = user ? (user.as any).subscribed || true : false
-      }
-      return Promise.resolve(token)
-    },
-  },
+  // callbacks: {
+  //   jwt: ({ token, user }) => {
+  //     const isSignIn = !!user
+  //     if (isSignIn) {
+  //       token.subscribed = user ? (user as any).subscribed || true : false
+  //     }
+  //     return Promise.resolve(token)
+  //   },
+  //   session: ({ session, token }) => {
+  //     ;(session as any).subscribed = token.subscribed
+  //     return Promise.resolve(session)
+  //   },
+  // },
   providers: [
     // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
     GithubProvider.default({

@@ -7,18 +7,21 @@ const users = [
     email: 'test@gmail.com',
     password: 'password',
     gender: 'F',
+    subscribed: true,
   },
   {
     id: 2,
     email: 'test2@gmail.com',
     password: 'password',
     gender: 'F',
+    subscribed: false,
   },
   {
     id: 3,
     email: 'test3@gmail.com',
     password: 'password',
     gender: 'M',
+    subscribed: true,
   },
 ]
 
