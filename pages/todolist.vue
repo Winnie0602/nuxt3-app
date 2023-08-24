@@ -33,6 +33,7 @@
     <p class="mt-20 text-5xl font-bold">Completed</p>
     <hr class="my-5" />
     <div class="flex w-full flex-col justify-center">
+      <pre>{{ data }}</pre>
       <p v-if="completedList.length === 0" class="mt-10 text-xl font-bold">
         目前沒有內容~
       </p>
@@ -63,5 +64,5 @@ const add = () => {
   inputTodo.value = ''
 }
 
-console.log(todoList)
+const { data } = await useFetch('/api/me')
 </script>

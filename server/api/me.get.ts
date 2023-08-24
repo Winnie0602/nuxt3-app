@@ -23,6 +23,13 @@ const users = [
     gender: 'M',
     subscribed: true,
   },
+  {
+    id: 3,
+    email: 'z976200@gmail.com',
+    password: 'password',
+    gender: 'M',
+    subscribed: true,
+  },
 ]
 
 export default eventHandler(async (event: any) => {

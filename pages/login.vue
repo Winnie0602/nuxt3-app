@@ -8,7 +8,6 @@
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
-            {{ data }}
           </p>
         </div>
         <div class="card w-full max-w-sm flex-shrink-0 bg-base-100 shadow-2xl">
@@ -148,7 +147,4 @@ definePageMeta({
     navigateAuthenticatedTo: '/todolist',
   },
 })
-
-const { data } = await useFetch('/api/me')
-console.log(data)
 </script>
