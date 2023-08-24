@@ -64,5 +64,6 @@ const add = () => {
   inputTodo.value = ''
 }
 
-const { data } = await useFetch('/api/me')
+// const { data } = await useFetch('/api/me')
+const { data } = await useAuth()
 </script>

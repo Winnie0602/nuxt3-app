@@ -34,7 +34,7 @@ const users = [
 
 export default eventHandler(async (event: any) => {
   const session = await getServerSession(event)
-
+  console.log(session)
   // 沒登入即顯示此訊息
   if (!session) {
     return {
