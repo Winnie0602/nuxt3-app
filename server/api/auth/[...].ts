@@ -1,7 +1,6 @@
-import GithubProvider from 'next-auth/providers/github'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import GithubProvider from 'next-auth/providers/github'
 import { NuxtAuthHandler } from '#auth'
-
 const runtimeConfig = useRuntimeConfig()
 
 export default NuxtAuthHandler({
@@ -32,7 +31,7 @@ export default NuxtAuthHandler({
       clientId: runtimeConfig.public.GITHUB_CLIENT_ID,
       clientSecret: runtimeConfig.GITHUB_CLIENT_SECRET,
     }),
-    // @ts-expect-error
+    // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
     CredentialsProvider.default({
       name: 'Credentials',
       credentials: {
@@ -40,18 +39,17 @@ export default NuxtAuthHandler({
         password: { label: 'Password', type: 'password' },
       },
       authorize(credentials: any) {
-        console.log(credentials)
-
         const user = {
           email: 'test@gmail.com',
           password: 'password',
         }
-
         if (
           credentials?.email === user.email &&
           credentials?.password === user.password
         ) {
           return user
+        } else {
+          return null
         }
       },
     }),

@@ -1,6 +1,17 @@
 <template>
   <NuxtLayout name="login">
-    <div class="hero min-h-screen bg-primary">
+    <!-- 登入錯誤訊息 -->
+    <dialog ref="modal" class="modal">
+      <div class="modal-box">
+        <h3 class="text-lg font-bold">ERROR!</h3>
+        <p class="py-4 text-error">錯誤的信箱或密碼！</p>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
+
+    <div class="hero relative min-h-screen bg-primary">
       <div class="hero-content flex-col lg:flex-row-reverse">
         <div class="mx-5 text-center lg:text-left">
           <h1 class="text-5xl font-bold">Login now!</h1>
@@ -93,42 +104,50 @@ import zhHant from '~/utils/zh-hant.json'
 
 setLocale(zhHant)
 
-// 表單
+// Creates a typed schema for vee-validate
+const schema = toTypedSchema(
+  yup.object({
+    email: yup.string().email().required(),
+    password: yup.string().min(6).required(),
+  }),
+)
+
+// 建立表單
 const { errors, defineInputBinds, handleSubmit } = useForm({
+  // 建立初始值
   initialValues: {
     email: 'test@gmail.com',
     password: 'password',
   },
-  validationSchema: toTypedSchema(
-    yup.object({
-      email: yup.string().email().required(),
-      password: yup.string().min(6).required(),
-    }),
-  ),
+  // 驗證方式: 使用yup
+  validationSchema: schema,
 })
 
-// 提交表單、登入跳轉
+// 定義欄位
+const email = defineInputBinds('email')
+const password = defineInputBinds('password')
+
+// 提交API、登入跳轉
 const onSubmit = handleSubmit(async (values) => {
+  console.log(values)
   // alert(JSON.stringify(values, null, 2))
 
-  await signIn('credentials', {
+  const { error, url }: any = await signIn('credentials', {
     email: values.email,
     password: values.password,
-    // redirect: false,
+    redirect: false,
     callbackUrl: '/todolist',
   })
 
-  // if (error) {
-  //   // Do your custom error handling here
-  //   alert('You have made a terrible mistake while entering your credentials')
-  // } else {
-  //   // No error, continue with the sign in, e.g., by following the returned redirect:
-  //   return navigateTo(url, { external: true })
-  // }
+  if (error) {
+    modal.value.showModal()
+  } else {
+    return navigateTo(url, { external: true })
+  }
 })
 
-const email = defineInputBinds('email')
-const password = defineInputBinds('password')
+// 控制顯示錯誤訊息
+const modal = ref()
 
 // OAuth
 const { signIn } = useAuth()
@@ -139,11 +158,12 @@ const githubSignInHandler = async () => {
 }
 
 // 設定layout
-// 設定只有未登入者可以看此頁面
 definePageMeta({
   layout: false,
   auth: {
+    // 設定custom page
     unauthenticatedOnly: true,
+    // 設定導頁
     navigateAuthenticatedTo: '/todolist',
   },
 })
