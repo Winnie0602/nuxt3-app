@@ -115,21 +115,26 @@ const schema = toTypedSchema(
 // 建立表單
 const { errors, defineInputBinds, handleSubmit } = useForm({
   // 建立初始值
-  initialValues: {
-    email: 'test@gmail.com',
-    password: 'password',
-  },
+  // initialValues: {
+  //   email: 'test@gmail.com',
+  //   password: 'password',
+  // },
   // 驗證方式: 使用yup
   validationSchema: schema,
 })
 
+console.log(errors)
+
 // 定義欄位
-const email = defineInputBinds('email')
-const password = defineInputBinds('password')
+const email = defineInputBinds('email', {
+  validateOnInput: true,
+})
+const password = defineInputBinds('password', {
+  validateOnInput: true,
+})
 
 // 提交API、登入跳轉
 const onSubmit = handleSubmit(async (values) => {
-  console.log(values)
   // alert(JSON.stringify(values, null, 2))
 
   const { error, url }: any = await signIn('credentials', {
@@ -139,7 +144,7 @@ const onSubmit = handleSubmit(async (values) => {
     callbackUrl: '/todolist',
   })
 
-  if (error) {
+  if (error && modal.value) {
     modal.value.showModal()
   } else {
     return navigateTo(url, { external: true })
@@ -147,7 +152,7 @@ const onSubmit = handleSubmit(async (values) => {
 })
 
 // 控制顯示錯誤訊息
-const modal = ref()
+const modal = ref<HTMLDialogElement>()
 
 // OAuth
 const { signIn } = useAuth()
