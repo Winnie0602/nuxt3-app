@@ -23,6 +23,22 @@
         </div>
         <div class="card w-full max-w-sm flex-shrink-0 bg-base-100 shadow-2xl">
           <div class="card-body">
+            <div v-if="showErrorMessage" class="alert alert-warning">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 shrink-0 stroke-current"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                />
+              </svg>
+              <span>錯誤的信箱或密碼！</span>
+            </div>
             <form action="" @submit.prevent="onSubmit">
               <div class="form-control">
                 <div class="form-control w-full max-w-xs">
@@ -36,7 +52,7 @@
                     type="text"
                     placeholder="Type here"
                     class="input input-bordered w-full max-w-xs"
-                    :class="{ 'input-error': errors.email }"
+                    :class="{ 'input-error': errors.email || showErrorMessage }"
                     v-bind="email"
                   />
                   <label class="label">
@@ -57,7 +73,9 @@
                     type="text"
                     placeholder="Type here"
                     class="input input-bordered w-full max-w-xs"
-                    :class="{ 'input-error': errors.password }"
+                    :class="{
+                      'input-error': errors.password || showErrorMessage,
+                    }"
                     v-bind="password"
                   />
                   <label class="label">
@@ -67,7 +85,7 @@
                 </div>
               </div>
               <div class="form-control mt-6">
-                <button class="btn btn-error btn-outline">Login</button>
+                <button class="btn btn-outline">Login</button>
               </div>
             </form>
 
@@ -115,15 +133,13 @@ const schema = toTypedSchema(
 // 建立表單
 const { errors, defineInputBinds, handleSubmit } = useForm({
   // 建立初始值
-  // initialValues: {
-  //   email: 'test@gmail.com',
-  //   password: 'password',
-  // },
+  initialValues: {
+    email: 'test@gmail.com',
+    password: 'password',
+  },
   // 驗證方式: 使用yup
   validationSchema: schema,
 })
-
-console.log(errors)
 
 // 定義欄位
 const email = defineInputBinds('email', {
@@ -144,15 +160,15 @@ const onSubmit = handleSubmit(async (values) => {
     callbackUrl: '/todolist',
   })
 
-  if (error && modal.value) {
-    modal.value.showModal()
+  if (error) {
+    showErrorMessage.value = true
   } else {
     return navigateTo(url, { external: true })
   }
 })
 
 // 控制顯示錯誤訊息
-const modal = ref<HTMLDialogElement>()
+const showErrorMessage = ref(false)
 
 // OAuth
 const { signIn } = useAuth()

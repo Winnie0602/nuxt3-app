@@ -63,7 +63,7 @@ const add = () => {
   addHandler(inputTodo.value)
   inputTodo.value = ''
 }
-
-// const { data } = await useFetch('/api/me')
-const { data } = await useAuth()
+const headers = useRequestHeaders(['cookie']) as HeadersInit
+const data: any = await useFetch('/api/me', { headers })
+// const { data } = await useAuth()
 </script>
