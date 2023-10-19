@@ -1,6 +1,8 @@
 <template>
+  <!-- 未完成清單 -->
   <List list-type="todo" :list-data="todoList" />
 
+  <!-- 完成清單 -->
   <List list-type="completed" :list-data="completedList" />
 </template>
 

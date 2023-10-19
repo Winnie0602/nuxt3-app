@@ -12,7 +12,6 @@
       <button class="btn btn-neutral btn-active mx-3" @click="add">新增</button>
     </div>
 
-    <!-- 代辦清單 -->
     <p class="mt-20 text-5xl font-bold">{{ listType }}</p>
     <hr class="my-5" />
     <div class="flex w-full flex-col justify-center">
