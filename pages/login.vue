@@ -183,7 +183,7 @@ definePageMeta({
   layout: false,
   auth: {
     // 設定custom page
-    unauthenticatedOnly: true,
+    // unauthenticatedOnly: true,
     // 設定導頁
     navigateAuthenticatedTo: '/todolist',
   },

@@ -4,6 +4,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "test": "vitest",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -18,7 +19,8 @@
     "@types/node": "^18.17.3",
     "daisyui": "^3.5.1",
     "nuxt": "^3.6.5",
-    "prisma": "^5.4.1"
+    "prisma": "^5.4.1",
+    "vitest": "^0.34.6"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",

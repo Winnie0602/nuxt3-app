@@ -1,11 +1,11 @@
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GithubProvider from 'next-auth/providers/github'
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import { PrismaClient } from '@prisma/client'
+// import { PrismaAdapter } from '@next-auth/prisma-adapter'
+// import { PrismaClient } from '@prisma/client'
 import { NuxtAuthHandler } from '#auth'
 
 const runtimeConfig = useRuntimeConfig()
-const prisma = new PrismaClient()
+// const prisma = new PrismaClient()
 
 async function getMe(session: any) {
   return await $fetch('/api/me', {
@@ -13,8 +13,8 @@ async function getMe(session: any) {
     body: {
       record: {
         email: session?.user?.email,
-      }
-    }
+      },
+    },
   })
 }
 
@@ -23,7 +23,7 @@ export default NuxtAuthHandler({
     // Change the default behavior to use `/login` as the path for the sign-in page
     signIn: '/login',
   },
-  adapter: PrismaAdapter(prisma),
+  // adapter: PrismaAdapter(prisma),
   // 利用callback在session裡面加入自定義的資料
   callbacks: {
     jwt: ({ token, user }) => {

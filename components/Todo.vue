@@ -1,7 +1,7 @@
 <template>
   <div class="my-2 flex w-full items-center rounded-lg bg-base-200 px-10">
     <input
-      v-if="type === 'incompleted'"
+      v-if="type === 'todo'"
       type="checkbox"
       class="checkbox"
       @change="complete"
@@ -9,6 +9,7 @@
 
     <div class="collapse-title text-xl font-medium">{{ todo }}</div>
     <span
+      v-if="type !== 'todo'"
       class="material-symbols-outlined p-3"
       @click="deleteHandler(type, todo)"
     >
@@ -31,7 +32,7 @@ const { todo } = defineProps({
   },
   type: {
     type: String,
-    default: 'incompleted' || 'completed',
+    default: 'todo' || 'completed',
   },
 })
 
