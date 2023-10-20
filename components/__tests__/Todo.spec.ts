@@ -12,6 +12,9 @@ describe('Todo', () => {
     // without having to pass it to it: `useStore(pinia)`
     setActivePinia(createPinia())
   })
+
+  const store = useTodoStore()
+
   // 把TodoCard.vue 實例化, 給予假資料
   // const wrapper = mount(Todo)
   const wrapper = mount(Todo, {
@@ -20,8 +23,6 @@ describe('Todo', () => {
       type: 'completed',
     },
   })
-
-  const store = useTodoStore()
 
   test('點delete icon會刪除該完成清單', () => {
     // 尋找按鈕
