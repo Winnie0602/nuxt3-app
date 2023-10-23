@@ -7,13 +7,13 @@
       @change="complete"
     />
 
-    <div class="collapse-title text-xl font-medium" test-data="text">
+    <div class="collapse-title text-xl font-medium" data-test="text">
       {{ todo }}
     </div>
     <span
       v-if="type !== 'todo'"
       class="material-symbols-outlined p-3"
-      test-data="delete-icon"
+      data-test="delete-icon"
       @click="deleteHandler(type, todo)"
     >
       delete
