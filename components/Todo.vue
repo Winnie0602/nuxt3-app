@@ -4,6 +4,7 @@
       v-if="type === 'incompleted'"
       type="checkbox"
       class="checkbox"
+      data-test="complete-input"
       @change="complete"
     />
 

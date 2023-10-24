@@ -14,7 +14,7 @@ const store = useTodoStore()
 
 const { completedList } = storeToRefs(store)
 
-const { todoList } = store
+const { todoList } = storeToRefs(store)
 
 // const headers = useRequestHeaders(['cookie']) as HeadersInit
 // const data: any = await useFetch('/api/me', { headers })

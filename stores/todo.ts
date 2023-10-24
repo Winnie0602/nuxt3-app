@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const useTodoStore = defineStore('todo', () => {
   const todoList = ref<string[]>([])
-  // const completedList = ref<string[]>([])
-  const completedList = ref(['123'])
+  const completedList = ref<string[]>([])
+  // const completedList = ref(['123'])
 
   const addHandler = (todo: string) => {
     todoList.value.push(todo)

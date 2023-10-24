@@ -7,9 +7,16 @@
         v-model="inputTodo"
         type="text"
         placeholder="請輸入代辦事項"
+        data-test="input"
         class="max-w-s input input-bordered w-full"
       />
-      <button class="btn btn-neutral btn-active mx-3" @click="add">新增</button>
+      <button
+        class="btn btn-neutral btn-active mx-3"
+        data-test="add-btn"
+        @click="add"
+      >
+        新增
+      </button>
     </div>
 
     <p class="mt-20 text-5xl font-bold">{{ listType }}</p>
@@ -18,18 +25,20 @@
       <p v-if="listData.length === 0" class="mt-10 text-xl font-bold">
         目前沒有內容~
       </p>
-      <Todo
-        v-for="todo in listData"
-        v-else
-        :key="todo"
-        :todo="todo"
-        :type="listType"
-      />
+      <div v-else>
+        <Todo
+          v-for="todo in listData"
+          :key="todo"
+          :todo="todo"
+          :type="listType"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useTodoStore } from '@/stores/todo'
 
 const store = useTodoStore()
