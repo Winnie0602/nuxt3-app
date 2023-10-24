@@ -1,7 +1,7 @@
 <template>
   <div class="my-2 flex w-full items-center rounded-lg bg-base-200 px-10">
     <input
-      v-if="type === 'incompleted'"
+      v-if="type === 'todo'"
       type="checkbox"
       class="checkbox"
       data-test="complete-input"
@@ -12,7 +12,6 @@
       {{ todo }}
     </div>
     <span
-      v-if="type !== 'todo'"
       class="material-symbols-outlined p-3"
       data-test="delete-icon"
       @click="deleteHandler(type, todo)"

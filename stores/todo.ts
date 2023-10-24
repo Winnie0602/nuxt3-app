@@ -18,7 +18,7 @@ export const useTodoStore = defineStore('todo', () => {
   const deleteHandler = (type: string, todo: string) => {
     let targetArr = null
 
-    targetArr = type === 'incompleted' ? todoList.value : completedList.value
+    targetArr = type === 'todo' ? todoList.value : completedList.value
 
     targetArr.splice(targetArr.indexOf(todo), 1)
   }

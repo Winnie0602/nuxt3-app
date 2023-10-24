@@ -40,6 +40,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useTodoStore } from '@/stores/todo'
+import Todo from '@/components/Todo.vue'
 
 const store = useTodoStore()
 
