@@ -19,6 +19,7 @@ async function getMe(session: any) {
 }
 
 export default NuxtAuthHandler({
+  secret: 'my-superb-secret',
   pages: {
     // Change the default behavior to use `/login` as the path for the sign-in page
     signIn: '/login',

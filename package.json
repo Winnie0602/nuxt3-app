@@ -24,6 +24,8 @@
     "vitest": "^0.33.0"
   },
   "dependencies": {
+    "@egjs/flicking-plugins": "^4.7.1",
+    "@egjs/vue3-flicking": "^4.11.1",
     "@next-auth/prisma-adapter": "^1.0.7",
     "@nuxtjs/eslint-config": "^12.0.0",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
@@ -36,6 +38,7 @@
     "@vee-validate/yup": "^4.11.1",
     "@vitejs/plugin-vue": "^4.4.0",
     "@vue/test-utils": "^2.4.1",
+    "embla-carousel-vue": "^8.0.0-rc15",
     "eslint": "^8.46.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-nuxt": "^4.0.0",

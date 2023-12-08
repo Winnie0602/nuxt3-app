@@ -8,10 +8,11 @@
         </li>
         <li><a>天氣</a></li>
         <li><a>電影</a></li>
+        <li><NuxtLink to="/swiper">Swiper</NuxtLink></li>
       </ul>
     </div>
     <div class="flex-none">
-      <div class="dropdown-end dropdown">
+      <div class="dropdown dropdown-end">
         <label tabindex="0" class="btn btn-circle btn-ghost">
           <div class="indicator">
             <svg
