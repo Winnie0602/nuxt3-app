@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Flicking from '@egjs/vue3-flicking'
-import { FlickingOptions } from '@egjs/flicking'
+import { type FlickingOptions } from '@egjs/flicking'
 import '@egjs/vue3-flicking/dist/flicking.css'
 import { Arrow } from '@egjs/flicking-plugins'
 import '@egjs/flicking-plugins/dist/arrow.css'
