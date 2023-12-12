@@ -10,7 +10,7 @@ const [emblaNode] = emblaCarouselVue({ dragFree: true, align: 'end' })
       <div
         v-for="item in [1, 2, 3, 4, 5, 6, 7, 8, 9]"
         :key="item"
-        class="embla__slide h-[300px] w-[500px] border border-white bg-purple-300"
+        class="embla__slide h-[300px] w-[500px] flex-[0_0_100%] border border-white bg-purple-300 sm:flex-[0_0_50%] lg:flex-[0_0_25%]"
       >
         {{ item }}
       </div>
@@ -23,12 +23,10 @@ const [emblaNode] = emblaCarouselVue({ dragFree: true, align: 'end' })
   overflow: hidden;
 }
 .embla__container {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 500px; /* Each slide covers 80% of the viewport */
+  display: flex;
 }
 .embla__slide {
-  /* flex: 0 0 100%;
-  min-width: 0; */
+  /* flex: 0 0 100%; */
+  min-width: 0;
 }
 </style>
