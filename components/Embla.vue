@@ -7,29 +7,25 @@ const [emblaNode, emblaApi] = emblaCarouselVue({
   // active: false,
 })
 
-const next = ref()
-const prev = ref()
+watchEffect(() => {
+  if (emblaApi.value) emblaApi.value.on('select', ()=>console.log(emblaApi.value?.selectedScrollSnap()))
+})
+
 
 // 上一頁
 const scrollPrev = () => {
   emblaApi.value?.scrollPrev()
 
   if (!emblaApi.value?.canScrollPrev()) {
-    prev.value.style.display = 'none'
-  } else {
-    next.value.style.display = 'block'
   }
 }
 
 // 下一頁
 const scrollNext = () => {
   emblaApi.value?.scrollNext()
-  console.log(emblaApi.value?.scrollProgress())
-  if (!emblaApi.value?.canScrollNext()) {
-    next.value.style.display = 'none'
-  } else {
-    prev.value.style.display = 'block'
-  }
+  // console.log(emblaApi.value?.scrollProgress())
+
+
 }
 </script>
 
@@ -39,7 +35,7 @@ const scrollNext = () => {
   >
     <button
       ref="prev"
-      class="embla__prev btn btn-info btn-outline absolute -left-[30px] z-50 hidden"
+      class="embla__prev btn btn-info btn-outline absolute -left-[30px] z-50"
       @click="scrollPrev"
     >
       Prev
