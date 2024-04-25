@@ -1,28 +1,9 @@
 <template>
   <!-- 代辦/完成 清單 共用組件 -->
-  <div>
-    <hr class="my-5" />
-    <div v-if="listType === 'todo'" class="flex w-full justify-center">
-      <input
-        v-model="inputTodo"
-        type="text"
-        placeholder="請輸入代辦事項"
-        data-test="input"
-        class="max-w-s input input-bordered w-full"
-      />
-      <button
-        class="btn btn-neutral btn-active mx-3"
-        data-test="add-btn"
-        @click="add"
-      >
-        新增
-      </button>
-    </div>
-
-    <p class="mt-20 text-5xl font-bold">{{ listType }}</p>
+  <div class="">
     <hr class="my-5" />
     <div class="flex w-full flex-col justify-center">
-      <p v-if="listData.length === 0" class="mt-10 text-xl font-bold">
+      <p v-if="listData.length === 0" class="text-xl font-bold">
         目前沒有內容~
       </p>
       <div v-else>
@@ -33,28 +14,27 @@
           :type="listType"
         />
       </div>
+
+      <button
+        class="btn btn-error btn-outline mt-10 w-[200px]"
+        @click="createErr"
+      >
+        make an error
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useTodoStore } from '@/stores/todo'
 import Todo from '@/components/Todo.vue'
-
-const store = useTodoStore()
-
-const { addHandler } = store
 
 defineProps<{
   listType: string
   listData: string[]
 }>()
 
-const inputTodo = ref<string>('')
-const add = () => {
-  addHandler(inputTodo.value)
-  inputTodo.value = ''
+const createErr = () => {
+  throw createError('發生錯誤！')
 }
 
 // const headers = useRequestHeaders(['cookie']) as HeadersInit

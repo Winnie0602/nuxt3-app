@@ -4,7 +4,12 @@ export default defineNuxtConfig({
   auth: {
     globalAppMiddleware: true,
   },
-  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@sidebase/nuxt-auth'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
+    '@sidebase/nuxt-auth',
+    "@nuxt/eslint"
+  ],
   // auth: {
   //   globalAppMiddleware: true,
   // },
